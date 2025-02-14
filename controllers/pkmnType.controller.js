@@ -1,7 +1,8 @@
 const { getAllTypes } = require("../services/pkmnType.service");
 
 const getTypes = (req, res) => {
-  res.json(getAllTypes());
+  let allT = getAllTypes();
+  res.json(allT);
 };
 
 module.exports = { getTypes };
