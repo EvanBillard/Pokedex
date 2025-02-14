@@ -23,13 +23,18 @@ mongoose
   });
 
 // 🔹 Routes
-app.use("/api/auth", authRoutes);
-app.use("/api/pokemon", isAuthenticated, pokemonRoutes);
-app.use("/api/pkmn", pkmnTypeRoutes); // Protégé par authentification
+app.use("/api/auth", authRoutes); // Authentification des utilisateurs
+app.use("/api/pokemon", isAuthenticated, pokemonRoutes); // Route pour gérer les Pokémon, protégée par authentification
+app.use("/api/pkmn", pkmnTypeRoutes); // Route pour les types de Pokémon (non sécurisée)
+
 
 // 🔹 Gestion d'erreur globale
 app.use((err, req, res, next) => {
   console.error("Erreur serveur :", err);
+  // Si l'erreur est une instance de MongoDB, gérer spécifiquement
+  if (err.name === 'MongoError') {
+    return res.status(500).json({ message: 'Erreur de base de données', error: err.message });
+  }
   res.status(500).json({ message: "Une erreur interne est survenue." });
 });
 
