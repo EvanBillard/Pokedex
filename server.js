@@ -2,6 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 
 const authRoutes = require("./routes/auth.routes");
+const userRoutes = require("./routes/user.routes");
 const pokemonRoutes = require("./routes/pokemon.routes");
 const pkmnTypeRoutes = require("./routes/pkmnType.routes");
 
@@ -26,6 +27,7 @@ mongoose
 app.use("/api/auth", authRoutes); // Authentification des utilisateurs
 app.use("/api/pokemon", isAuthenticated, pokemonRoutes); // Route pour gérer les Pokémon, protégée par authentification
 app.use("/api/pkmn", pkmnTypeRoutes); // Route pour les types de Pokémon (non sécurisée)
+app.use("/api/users", userRoutes);
 
 
 // 🔹 Gestion d'erreur globale
