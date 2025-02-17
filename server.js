@@ -5,6 +5,7 @@ const authRoutes = require("./routes/auth.routes");
 const userRoutes = require("./routes/user.routes");
 const pokemonRoutes = require("./routes/pokemon.routes");
 const pkmnTypeRoutes = require("./routes/pkmnType.routes");
+const trainerRoutes = require("./routes/trainer.routes");
 
 const { isAuthenticated } = require("./middlewares/auth.middleware");
 
@@ -28,7 +29,7 @@ app.use("/api/auth", authRoutes); // Authentification des utilisateurs
 app.use("/api/pokemon", isAuthenticated, pokemonRoutes); // Route pour gérer les Pokémon, protégée par authentification
 app.use("/api/pkmn", pkmnTypeRoutes); // Route pour les types de Pokémon (non sécurisée)
 app.use("/api/users", userRoutes);
-
+app.use("/api/trainer", isAuthenticated, trainerRoutes); // Ajout de la route des dresseurs protégée par authentification
 
 // 🔹 Gestion d'erreur globale
 app.use((err, req, res, next) => {

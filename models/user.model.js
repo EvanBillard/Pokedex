@@ -42,7 +42,7 @@ const userSchema = new mongoose.Schema({
 
 // 🔹 Hook avant l'enregistrement d'un utilisateur
 userSchema.pre('save', async function (next) {
-  console.log('🛠️ Fonction exec avant le save');
+  console.log('Fonction exec avant le save');
   console.log(this);
 
   // Formatage du prénom et du nom
@@ -63,7 +63,7 @@ userSchema.pre('save', async function (next) {
 
 // 🔹 Hook avant la mise à jour d'un utilisateur
 userSchema.pre('findOneAndUpdate', async function (next) {
-  console.log('🛠️ Fonction exec avant la mise à jour');
+  console.log('Fonction exec avant la mise à jour');
 
   const update = this.getUpdate();
 
