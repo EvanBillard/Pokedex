@@ -11,7 +11,8 @@ const pokemonSchema = new mongoose.Schema({
   regions: [{
     regionName: { type: String, required: true },
     regionPokedexNumber: { type: Number, required: true }
-  }]
+  }],
+  soundPath: { type: String, required: false } // Nouveau champ soundPath ajouté
 });
 
 const PokemonModel = mongoose.model('Pokemon', pokemonSchema);

@@ -1,7 +1,7 @@
 const PkmnType = [
-    "NORMAL", "FIRE", "WATER", "GRASS", "ELECTRIC", "ICE", "FIGHTING", "POISON",
-    "GROUND", "FLYING", "PSYCHIC", "BUG", "ROCK", "GHOST", "DRAGON", "DARK",
-    "STEEL", "FAIRY"
+    "Normal", "Feu", "Eau", "Plante", "Électrique", "Glace", "Combat", "Poison",
+    "Sol", "Vol", "Psy", "Insecte", "Roche", "Spectre", "Dragon", "Ténèbres",
+    "Acier", "Fée"
   ];
   
   module.exports = PkmnType;

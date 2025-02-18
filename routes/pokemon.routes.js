@@ -1,5 +1,3 @@
-// routes/pokemon.routes.js
-
 const express = require('express');
 const PokemonModel = require('../models/pokemon.model'); // Importer le modèle Pokémon
 const PkmnTypes = require('../models/pkmnType.model'); // Importer les types de Pokémon
@@ -19,7 +17,7 @@ router.get('/', isAuthenticated, async (req, res) => {
 
 // Route pour créer un Pokémon (réservé aux admins)
 router.post('/', isAuthenticated, isAdmin, async (req, res) => {
-  const { name, imgUrl, description, types, regions } = req.body;
+  const { name, imgUrl, description, types, regions, soundPath } = req.body;
 
   // Validation des champs nécessaires
   if (!name || !imgUrl || !description || !types || !regions) {
@@ -38,7 +36,8 @@ router.post('/', isAuthenticated, isAdmin, async (req, res) => {
       imgUrl,
       description,
       types,
-      regions
+      regions,
+      soundPath // Ajouter soundPath dans la création du Pokémon
     });
 
     await newPokemon.save(); // Enregistrer le nouveau Pokémon dans la base de données
