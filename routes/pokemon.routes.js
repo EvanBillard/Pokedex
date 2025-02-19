@@ -6,7 +6,7 @@ const { isAuthenticated, isAdmin } = require('../middlewares/auth.middleware');
 const router = express.Router();
 
 // Route pour récupérer tous les Pokémon
-router.get('/', isAuthenticated, async (req, res) => {
+router.get('/', async (req, res) => {
   try {
     const pokemons = await PokemonModel.find();
     res.status(200).json(pokemons); // Retourner la liste des Pokémon

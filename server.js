@@ -1,6 +1,8 @@
 const express = require("express");
 const mongoose = require("mongoose");
 
+
+
 const authRoutes = require("./routes/auth.routes");
 const userRoutes = require("./routes/user.routes");
 const pokemonRoutes = require("./routes/pokemon.routes");
@@ -15,6 +17,10 @@ const MONGO_URI = "mongodb://127.0.0.1:27017/td";
 const app = express();
 app.use(express.json());
 
+
+const cors = require('cors');
+app.use(cors());
+
 // 🔹 Connexion à MongoDB
 mongoose
   .connect(MONGO_URI)
@@ -26,7 +32,7 @@ mongoose
 
 // 🔹 Routes
 app.use("/api/auth", authRoutes); // Authentification des utilisateurs
-app.use("/api/pokemon", isAuthenticated, pokemonRoutes); // Route pour gérer les Pokémon, protégée par authentification
+app.use("/api/pokemon", pokemonRoutes); // Route pour gérer les Pokémon, protégée par authentification
 app.use("/api/pkmn", pkmnTypeRoutes); // Route pour les types de Pokémon (non sécurisée)
 app.use("/api/users", userRoutes);
 app.use("/api/trainer", isAuthenticated, trainerRoutes); // Ajout de la route des dresseurs protégée par authentification
