@@ -126,4 +126,22 @@ router.put('/mark', isAuthenticated, async (req, res) => {
   }
 });
 
+// 🔹 Récupérer les Pokémon vus et capturés d'un dresseur
+router.get("/me/pokedex", isAuthenticated, async (req, res) => {
+  try {
+      const trainer = await TrainerModel.findOne({ email: req.user.email });
+      if (!trainer) {
+          return res.status(404).json({ message: "Dresseur non trouvé" });
+      }
+
+      res.json({
+          pkmnSeen: trainer.pkmnSeen,
+          pkmnCatch: trainer.pkmnCatch
+      });
+  } catch (err) {
+      console.error("Erreur lors de la récupération du Pokédex:", err);
+      res.status(500).json({ message: "Erreur serveur" });
+  }
+});
+
 module.exports = router;

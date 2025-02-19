@@ -15,8 +15,8 @@ document.addEventListener("DOMContentLoaded", async () => {
             
 
             pokemonCard.innerHTML = `
-                <img src="${pokemon.imgUrl}" alt="${pokemon.name}">
-                <h3>${pokemon.name}</h3>
+            <h3>${pokemon.name}</h3>
+            <img src="${pokemon.imgUrl}" alt="${pokemon.name}">
                 <p>${pokemon.types.join(" ")}</p>
             `;
 

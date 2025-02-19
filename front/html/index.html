@@ -8,16 +8,18 @@
 </head>
 <body>
     <header>
-        <h1>Pokédex</h1>
-        <nav>
-            <button id="login-btn">
-                <a href="login.html"> Se connecter</a></button>
-            <button id="logout-btn" style="display:none;">Se déconnecter</button>
 
-            <a href="pokedex.html" id="pokedex-link" style="display:none;">Mon Pokédex</a>
-        </nav>
-    </header>
-    <main>
+        <img id="header-icon" src="../medias/pikachu-icon.png" alt="">
+        <nav>
+            
+                <a id="login-btn" href="login.html"> Se connecter</a></button>
+                <a id="logout-btn" style="display:none;">Se déconnecter</a>
+                
+                <a href="pokedex.html" id="pokedex-link" style="display:none;">Mon Pokédex</a>
+            </nav>
+        </header>
+        <main>
+        <img src="../medias/pokédex-title.png" alt="Pokédex" id="pokédex-title">
         <div id="pokemon-list"></div>
     </main>
     <script src="../js/app.js" defer></script>
