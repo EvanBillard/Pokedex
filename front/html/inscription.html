@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="fn">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inscription</title>
+
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="../js/inscription.js"></script>
+</head>
+
+<body>
+
+    <header>
+
+        <a href="index.html">
+            <img id="header-icon" src="../medias/pikachu-icon.png" alt="">
+        </a>
+
+        <nav>
+            <a href="pokedex.html" id="pokedex-link" style="display:none;">Mon Pokédex</a>
+            <a href="pokedex.html" id="pokedex-link" style="display:none;">Mon dresseur</a>
+            <a id="login-btn" href="login.html"> Se connecter</a></button>
+            <a id="logout-btn" style="display:none;">Se déconnecter</a>
+
+
+        </nav>
+    </header>
+
+    <form id="inscriptionForm">
+
+        <div>
+            <label for="prenom">Prénom</label>
+            <input type="text" id="prenom" placeholder="Jean" required>
+        </div>
+
+        <div>
+            <label for="nom">Nom</label>
+            <input type="text" id="nom" placeholder="Dupont" required>
+        </div>
+
+        <div>
+            <label for="email">Email</label>
+            <input type="mail" id="email" placeholder="jean.dupont@gmail.com" required>
+        </div>
+
+        <div>
+            <label for="password">Mot de passe</label>
+            <input type="password" id="password" placeholder="" required>
+        </div>
+
+        <div>
+            <label for="password2">Confirmation mot de passe</label>
+            <input type="password" id="password2" placeholder="" required>
+        </div>
+
+        <button type="submit">Inscription</button>
+
+    </form>
+
+
+
+
+</body>
+
+</html>

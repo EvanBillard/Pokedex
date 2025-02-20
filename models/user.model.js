@@ -31,12 +31,14 @@ const userSchema = new mongoose.Schema({
   role: { 
     type: String, 
     enum: ['user', 'admin'], 
-    default: 'user' 
+    default: 'user',
+    required: false,
   },
   permissions: { 
     type: [String], 
     enum: ['CAN_CREATE_PKMN', 'CAN_EDIT_PKMN', 'CAN_DELETE_PKMN'], 
-    default: [] 
+    default: [],
+    required: false,
   }
 });
 

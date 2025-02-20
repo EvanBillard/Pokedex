@@ -2,6 +2,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const loginForm = document.getElementById('loginForm');
     const loginBtn = document.getElementById('login-btn');
     const logoutBtn = document.getElementById('logout-btn');
+    const inscriptionBtn = document.getElementById('inscription-btn');
     const pokedexLink = document.getElementById('pokedex-link');
 
     // Vérifier si un token est stocké pour ajuster l'affichage
@@ -12,7 +13,9 @@ document.addEventListener('DOMContentLoaded', function () {
             // Utilisateur connecté
             if (loginBtn) loginBtn.style.display = 'none';
             if (logoutBtn) logoutBtn.style.display = 'block';
+            if (inscriptionBtn) inscriptionBtn.style.display = 'none';
             if (pokedexLink) pokedexLink.style.display = 'block';
+
         } else {
             // Utilisateur non connecté
             if (loginBtn) loginBtn.style.display = 'block';

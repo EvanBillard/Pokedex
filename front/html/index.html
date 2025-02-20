@@ -1,28 +1,36 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pokedex</title>
     <link rel="stylesheet" href="../css/style.css">
 </head>
+
 <body>
     <header>
 
-        <img id="header-icon" src="../medias/pikachu-icon.png" alt="">
+        <a href="index.html">
+            <img id="header-icon" src="../medias/pikachu-icon.png" alt="">
+        </a>
+
         <nav>
-            
-                <a id="login-btn" href="login.html"> Se connecter</a></button>
-                <a id="logout-btn" style="display:none;">Se déconnecter</a>
-                
-                <a href="pokedex.html" id="pokedex-link" style="display:none;">Mon Pokédex</a>
-            </nav>
-        </header>
-        <main>
+
+            <a id="login-btn" href="login.html"> Se connecter</a></button>
+            <a id="inscription-btn" href="inscription.html"> S'inscrire</a></button>
+            <a href="pokedex.html" id="pokedex-link" style="display:none;">Mon Pokédex</a>
+            <a href="pokedex.html" id="pokedex-link" style="display:none;">Mon dresseur</a>
+            <a id="logout-btn" style="display:none;">Se déconnecter</a>
+
+        </nav>
+    </header>
+    <main>
         <img src="../medias/pokédex-title.png" alt="Pokédex" id="pokédex-title">
         <div id="pokemon-list"></div>
     </main>
     <script src="../js/app.js" defer></script>
     <script src="../js/auth.js" defer></script>
 </body>
+
 </html>
