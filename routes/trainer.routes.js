@@ -2,6 +2,7 @@ const express = require('express');
 const TrainerModel = require('../models/trainer.model');
 const { isAuthenticated } = require('../middlewares/auth.middleware');
 const { getUserById } = require('../services/user.service');
+const axios = require("axios");
 const router = express.Router();
 
 // POST /trainer - Créer un dresseur
@@ -126,22 +127,36 @@ router.put('/mark', isAuthenticated, async (req, res) => {
   }
 });
 
+
+
+
+
 // 🔹 Récupérer les Pokémon vus et capturés d'un dresseur
 router.get("/me/pokedex", isAuthenticated, async (req, res) => {
   try {
-      const trainer = await TrainerModel.findOne({ email: req.user.email });
-      if (!trainer) {
-          return res.status(404).json({ message: "Dresseur non trouvé" });
-      }
+    console.log("Utilisateur authentifié:", req.user);
 
-      res.json({
-          pkmnSeen: trainer.pkmnSeen,
-          pkmnCatch: trainer.pkmnCatch
-      });
+    // Étape 1 : Récupérer le dresseur via l'ID de l'utilisateur authentifié
+    const trainer = await TrainerModel.findOne({ userId: req.user.id });  // Utilisation de req.user.id pour récupérer le dresseur
+
+    if (!trainer) {
+      return res.status(404).json({ message: "Dresseur non trouvé" });
+    }
+
+    // Retourne les Pokémon vus et capturés
+    res.json({
+      pkmnSeen: trainer.pkmnSeen,
+      pkmnCatch: trainer.pkmnCatch
+    });
+
   } catch (err) {
-      console.error("Erreur lors de la récupération du Pokédex:", err);
-      res.status(500).json({ message: "Erreur serveur" });
+    console.error("Erreur lors de la récupération du Pokédex:", err);
+    res.status(500).json({ message: "Erreur serveur" });
   }
 });
 
+
+
+
 module.exports = router;
+

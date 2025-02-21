@@ -4,12 +4,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mon Pokédex</title>
-    <!-- <link rel="stylesheet" href="css/style.css"> -->
-</head>
-<body>
-    <h1>Mon Pokédex</h1>
-    <div id="pokedex-container"></div>
-    <a href="index.html">Retour à l'accueil</a>
+
+    <link rel="stylesheet" href="../css/style.css">
     <script src="../js/pokedex.js"></script>
+    <script src="../js/auth.js"></script>
+</head>
+
+<body>  
+
+    <header>
+
+        <a href="index.html">
+            <img id="header-icon" src="../medias/pikachu-icon.png" alt="">
+        </a>
+
+        <nav>
+
+            <a id="login-btn" href="login.html"> Se connecter</a></button>
+            <a id="inscription-btn" href="inscription.html"> S'inscrire</a></button>
+            <a href="user.html" id="trainer-link" style="display:none;">Mon dresseur</a>
+            <a id="logout-btn" style="display:none;">Se déconnecter</a>
+
+        </nav>
+    </header>
+    
+    <div id="pokedex-container"></div>
+   
 </body>
 </html>

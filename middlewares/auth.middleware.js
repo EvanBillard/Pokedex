@@ -1,4 +1,3 @@
-// auth.middleware.js
 const jwt = require('jsonwebtoken');
 
 exports.isAuthenticated = (req, res, next) => {
@@ -7,7 +6,11 @@ exports.isAuthenticated = (req, res, next) => {
 
   try {
     const decoded = jwt.verify(token, 'SECRET_KEY');
-    req.user = decoded;
+    req.user = {
+      userId: decoded.userId,
+      role: decoded.role,
+      email: decoded.email // Vérifie que l'email est bien récupéré
+    };
     next();
   } catch (err) {
     res.status(401).send({ message: 'Token invalide' });
@@ -15,7 +18,6 @@ exports.isAuthenticated = (req, res, next) => {
 };
 
 exports.isAdmin = (req, res, next) => {
-  console.log(req.user);
   if (!req.user || req.user.role !== 'admin') {
     return res.status(403).send({ message: 'Accès refusé' });
   }
