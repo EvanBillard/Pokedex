@@ -7,7 +7,7 @@ const { isAuthenticated } = require('../middlewares/auth.middleware');
 
 const router = express.Router();
 
-// 🔹 Inscription
+//Inscription
 router.post('/register', async (req, res) => {
   try {
     const user = new UserModel(req.body);
@@ -18,7 +18,7 @@ router.post('/register', async (req, res) => {
   }
 });
 
-// 🔹 Connexion
+//Connexion
 router.post('/login', async (req, res) => {
   try {
     const user = await UserModel.findOne({ email: req.body.email });
@@ -38,7 +38,7 @@ router.post('/login', async (req, res) => {
   }
 });
 
-// 🔹 Vérification du token
+//Vérification du token
 router.get('/checkUser', isAuthenticated, checkUser);
 
 module.exports = router;

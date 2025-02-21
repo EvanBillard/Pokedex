@@ -12,7 +12,7 @@ const createTrainer = async (email, trainerName, imgUrl, pkmnSeen, pkmnCatch) =>
     });
 
     await newTrainer.save();
-    return newTrainer; // Retourne le dresseur créé
+    return newTrainer;
   } catch (err) {
     throw new Error('Erreur lors de la création du dresseur : ' + err.message);
   }

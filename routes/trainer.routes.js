@@ -14,13 +14,13 @@ router.post('/', isAuthenticated, async (req, res) => {
       return res.status(400).json({ message: 'Les données sont manquantes ou incorrectes.' });
     }
 
-    const userId = req.user.userId; // Assurez-vous que `req.user.userId` est défini dans le middleware
+    const userId = req.user.userId; 
     const user = await getUserById(userId);
     if (!user) {
       return res.status(404).json({ message: 'Utilisateur non trouvé.' });
     }
 
-    const email = user.email; // Récupérer l'email de l'utilisateur
+    const email = user.email;
     const newTrainer = new TrainerModel({
       email,
       trainerName,
@@ -91,7 +91,7 @@ router.delete('/', isAuthenticated, async (req, res) => {
 // PUT /trainer/mark - Marquer un Pokémon comme vu ou capturé
 router.put('/mark', isAuthenticated, async (req, res) => {
   try {
-    const { pokemonName, isCaptured } = req.body; // Pokémon à ajouter et le statut isCaptured
+    const { pokemonName, isCaptured } = req.body;
     if (!pokemonName || typeof isCaptured !== 'boolean') {
       return res.status(400).json({ message: 'Paramètres invalides. Assurez-vous de fournir un nom de Pokémon et le statut isCaptured.' });
     }
@@ -111,11 +111,11 @@ router.put('/mark', isAuthenticated, async (req, res) => {
     // Ajouter le Pokémon dans la liste appropriée (vu ou capturé)
     if (isCaptured) {
       if (!trainer.pkmnCatch.includes(pokemonName)) {
-        trainer.pkmnCatch.push(pokemonName); // Ajouter à la liste des capturés
+        trainer.pkmnCatch.push(pokemonName);
       }
     } else {
       if (!trainer.pkmnSeen.includes(pokemonName)) {
-        trainer.pkmnSeen.push(pokemonName); // Ajouter à la liste des vus
+        trainer.pkmnSeen.push(pokemonName);
       }
     }
 
@@ -131,19 +131,19 @@ router.put('/mark', isAuthenticated, async (req, res) => {
 
 
 
-// 🔹 Récupérer les Pokémon vus et capturés d'un dresseur
+//Récupérer les Pokémon vus et capturés d'un dresseur
 router.get("/me/pokedex", isAuthenticated, async (req, res) => {
   try {
     console.log("Utilisateur authentifié:", req.user);
 
-    // Étape 1 : Récupérer le dresseur via l'ID de l'utilisateur authentifié
-    const trainer = await TrainerModel.findOne({ userId: req.user.id });  // Utilisation de req.user.id pour récupérer le dresseur
+    
+    const trainer = await TrainerModel.findOne({ userId: req.user.id });
 
     if (!trainer) {
       return res.status(404).json({ message: "Dresseur non trouvé" });
     }
 
-    // Retourne les Pokémon vus et capturés
+  
     res.json({
       pkmnSeen: trainer.pkmnSeen,
       pkmnCatch: trainer.pkmnCatch

@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const password = document.getElementById("password").value;
         const password2 = document.getElementById("password2").value;
 
-        // 🔹 Vérification des mots de passe
+      
         if (password !== password2) {
             alert("Les mots de passe ne correspondent pas.");
             return;
@@ -31,14 +31,14 @@ document.addEventListener("DOMContentLoaded", () => {
                 throw new Error(data.message || "Erreur lors de l'inscription");
             }
 
-            // 🔹 Stocker le token dans le localStorage
+            //Stocker le token dans le localStorage
             localStorage.setItem("token", data.token);
             localStorage.setItem("user", JSON.stringify(data.user));
 
-            // 🔹 Mettre à jour la navigation
+           
             updateNav();
 
-            // 🔹 Rediriger vers l'accueil
+          
             window.location.href = "index.html";
 
         } catch (error) {

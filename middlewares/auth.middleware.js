@@ -9,7 +9,7 @@ exports.isAuthenticated = (req, res, next) => {
     req.user = {
       userId: decoded.userId,
       role: decoded.role,
-      email: decoded.email // Vérifie que l'email est bien récupéré
+      email: decoded.email 
     };
     next();
   } catch (err) {

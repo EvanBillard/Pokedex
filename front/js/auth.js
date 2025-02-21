@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
-    // Gestion de la connexion
+   
     if (loginForm) {
         loginForm.addEventListener('submit', function (e) {
             e.preventDefault();
@@ -45,7 +45,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
                 if (data.token) {
                     localStorage.setItem('token', data.token);
-                    window.location.href = 'index.html'; // Redirection après connexion
+                    window.location.href = 'index.html'; 
                 } else {
                     alert('Erreur de connexion : ' + data.message);
                 }
@@ -60,12 +60,12 @@ document.addEventListener('DOMContentLoaded', function () {
     // Gestion de la déconnexion
     if (logoutBtn) {
         logoutBtn.addEventListener('click', function () {
-            localStorage.removeItem('token'); // Supprimer le token
-            updateUI(); // Mettre à jour l'affichage
-            window.location.href = 'index.html'; // Redirection après déconnexion
+            localStorage.removeItem('token'); 
+            updateUI();
+            window.location.href = 'index.html'; 
         });
     }
 
-    // Mise à jour de l'UI au chargement de la page
+    
     updateUI();
 });

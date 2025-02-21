@@ -30,7 +30,7 @@ document.addEventListener("DOMContentLoaded", async function () {
         const { pkmnSeen, pkmnCatch } = await response.json();
         console.log("Données récupérées : ", { pkmnSeen, pkmnCatch });
 
-        // 🔹 Récupération de tous les Pokémon disponibles
+        //Récupération de tous les Pokémon disponibles
         const pokemonsResponse = await fetch("http://localhost:3000/api/pokemon");
         const allPokemons = await pokemonsResponse.json();
         console.log("Tous les Pokémon disponibles : ", allPokemons);
@@ -38,7 +38,7 @@ document.addEventListener("DOMContentLoaded", async function () {
         const pokedexContainer = document.getElementById("pokedex-container");
         pokedexContainer.innerHTML = ""; // Nettoyage avant affichage
 
-        // 🔹 Affichage des Pokémon vus dans le Pokédex
+        //Affichage des Pokémon vus dans le Pokédex
         pkmnSeen.forEach(pokemon => {
             console.log("Pokémon en cours d'affichage : ", pokemon);
 
@@ -50,7 +50,7 @@ document.addEventListener("DOMContentLoaded", async function () {
                 pokemonElement.classList.add("pokemon-card");
 
                 if (isCaptured) {
-                    pokemonElement.classList.add("captured"); // Ajoute la classe si capturé
+                    pokemonElement.classList.add("captured"); // Ajoute une classe si capturé
                 }
 
                 pokemonElement.innerHTML = `

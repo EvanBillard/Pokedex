@@ -2,7 +2,7 @@ const Pokemon = require("../models/pokemon.model");
 
 exports.createPokemon = async (req, res) => {
   try {
-    // Vérifie que l'utilisateur est admin
+ 
     if (req.user.role !== "admin") {
       return res.status(403).json({ message: "Accès refusé : vous n'êtes pas admin." });
     }

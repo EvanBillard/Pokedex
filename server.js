@@ -21,7 +21,7 @@ app.use(express.json());
 const cors = require('cors');
 app.use(cors());
 
-// 🔹 Connexion à MongoDB
+//Connexion à MongoDB
 mongoose
   .connect(MONGO_URI)
   .then(() => console.log("Connexion à MongoDB réussie !"))
@@ -30,14 +30,14 @@ mongoose
     process.exit(1); // Arrête le serveur en cas d'erreur critique
   });
 
-// 🔹 Routes
-app.use("/api/auth", authRoutes); // Authentification des utilisateurs
-app.use("/api/pokemon", pokemonRoutes); // Route pour gérer les Pokémon, protégée par authentification
-app.use("/api/pkmn", pkmnTypeRoutes); // Route pour les types de Pokémon (non sécurisée)
+//Routes
+app.use("/api/auth", authRoutes); 
+app.use("/api/pokemon", pokemonRoutes); 
+app.use("/api/pkmn", pkmnTypeRoutes); 
 app.use("/api/users", userRoutes);
-app.use("/api/trainer", isAuthenticated, trainerRoutes); // Ajout de la route des dresseurs protégée par authentification
+app.use("/api/trainer", isAuthenticated, trainerRoutes); 
 
-// 🔹 Gestion d'erreur globale
+//Gestion d'erreurs
 app.use((err, req, res, next) => {
   console.error("Erreur serveur :", err);
   // Si l'erreur est une instance de MongoDB, gérer spécifiquement
@@ -47,7 +47,7 @@ app.use((err, req, res, next) => {
   res.status(500).json({ message: "Une erreur interne est survenue." });
 });
 
-// 🔹 Lancement du serveur
+//Lancement du serveur
 app.listen(PORT, () => {
   console.log(`Serveur lancé sur http://localhost:${PORT}`);
 });

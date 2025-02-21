@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 
-// 🔹 Fonction de validation de l'email
+//Validation de l'email
 let validateEmail = function(email) {
   let re = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
   return re.test(email);
@@ -15,14 +15,14 @@ const userSchema = new mongoose.Schema({
   lastName: { 
     type: String, 
     required: true, 
-    minlength: 2,   // Validation de la longueur du nom (min 2 caractères)
-    maxlength: 40   // Validation de la longueur du nom (max 40 caractères)
+    minlength: 2,   
+    maxlength: 40   
   },
   email: { 
     type: String, 
     required: true, 
     unique: true, 
-    validate: [validateEmail, 'Veuillez entrer une adresse email valide']  // Validation de l'email avec regex
+    validate: [validateEmail, 'Veuillez entrer une adresse email valide']
   },
   password: { 
     type: String, 
@@ -42,12 +42,12 @@ const userSchema = new mongoose.Schema({
   }
 });
 
-// 🔹 Hook avant l'enregistrement d'un utilisateur
+//Hook avant l'enregistrement d'un utilisateur
 userSchema.pre('save', async function (next) {
   console.log('Fonction exec avant le save');
   console.log(this);
 
-  // Formatage du prénom et du nom
+  //Formatage du prénom et du nom
   if (this.firstName) {
     this.firstName = this.firstName.charAt(0).toUpperCase() + this.firstName.slice(1).toLowerCase();
   }
@@ -55,7 +55,7 @@ userSchema.pre('save', async function (next) {
     this.lastName = this.lastName.toUpperCase();
   }
 
-  // Hash du mot de passe uniquement s'il a été modifié
+  //Hash du mot de passe uniquement s'il a été modifié
   if (this.isModified('password')) {
     this.password = await bcrypt.hash(this.password, 10);
   }
@@ -63,13 +63,13 @@ userSchema.pre('save', async function (next) {
   next();
 });
 
-// 🔹 Hook avant la mise à jour d'un utilisateur
+//Hook avant la mise à jour d'un utilisateur
 userSchema.pre('findOneAndUpdate', async function (next) {
   console.log('Fonction exec avant la mise à jour');
 
   const update = this.getUpdate();
 
-  // Formatage du prénom et du nom si mis à jour
+  //Formatage du prénom et du nom si mis à jour
   if (update.firstName) {
     update.firstName = update.firstName.charAt(0).toUpperCase() + update.firstName.slice(1).toLowerCase();
   }
@@ -77,7 +77,7 @@ userSchema.pre('findOneAndUpdate', async function (next) {
     update.lastName = update.lastName.toUpperCase();
   }
 
-  // Hashage du mot de passe si modifié
+  //Hashage du mot de passe si modifié
   if (update.password) {
     update.password = await bcrypt.hash(update.password, 10);
   }
@@ -86,7 +86,7 @@ userSchema.pre('findOneAndUpdate', async function (next) {
   next();
 });
 
-// 🔹 Vérification des permissions
+//Vérification des permissions
 userSchema.methods.hasPermission = function(permission) {
   return this.permissions.includes(permission);
 };
